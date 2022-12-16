@@ -11,10 +11,18 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 public class signInFragment extends Fragment {
 
     NavController navController;
+    private EditText emailEditText, passwordEditText;
+    private Button emailSignInButton;
+    private LinearLayout signInForm;
+    private ProgressBar signInProgressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
