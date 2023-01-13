@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class registerFragment extends Fragment {
+public class RegisterFragment extends Fragment {
 
     NavController navController;
     private EditText emailEditText, passwordEditText;

@@ -9,10 +9,10 @@
             android:title="@string/menu_home" />
         <item
             android:id="@+id/profileFragment"
-            android:title="@string/menu_home" />
+            android:title="Perfil" />
         <item
             android:id="@+id/signOutFragment"
-            android:title="@string/menu_home" />
+            android:title="Cerrar sesión" />
     </group>
 
 </menu>
