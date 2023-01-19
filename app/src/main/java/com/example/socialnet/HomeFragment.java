@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -74,18 +76,32 @@ public class HomeFragment extends Fragment {
                 Glide.with(getContext()).load(post.authorPhotoUrl).circleCrop().into(holder.authorPhotoImageView);
             holder.authorTextView.setText(post.author);
             holder.contentTextView.setText(post.content);
+
+            final String postKey = getSnapshots().getSnapshot(position).getId();
+            final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            if(post.likes.containsKey(uid))
+                holder.likeImageView.setImageResource(R.drawable.like_on);
+            else
+                holder.likeImageView.setImageResource(R.drawable.like_off);
+            holder.numLikesTextView.setText(String.valueOf(post.likes.size()));
+            holder.likeImageView.setOnClickListener(view -> {
+                FirebaseFirestore.getInstance().collection("posts")
+                        .document(postKey)
+                        .update("likes."+uid, post.likes.containsKey(uid) ?
+                                FieldValue.delete() : true);
+            });
         }
 
         class PostViewHolder extends RecyclerView.ViewHolder {
-            ImageView authorPhotoImageView;
-            TextView authorTextView, contentTextView;
-
+            ImageView authorPhotoImageView, likeImageView;
+            TextView authorTextView, contentTextView, numLikesTextView;
             PostViewHolder(@NonNull View itemView) {
                 super(itemView);
-
                 authorPhotoImageView = itemView.findViewById(R.id.photoImageView);
+                likeImageView = itemView.findViewById(R.id.likeImageView);
                 authorTextView = itemView.findViewById(R.id.authorTextView);
                 contentTextView = itemView.findViewById(R.id.contentTextView);
+                numLikesTextView = itemView.findViewById(R.id.numLikesTextView);
             }
         }
     }
