@@ -63,4 +63,7 @@ dependencies {
 
     // FirebaseUI for Cloud Storage
     implementation 'com.firebaseui:firebase-ui-storage:8.0.2'
+    //Implements fot Profile
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
