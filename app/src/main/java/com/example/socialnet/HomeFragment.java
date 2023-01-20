@@ -23,6 +23,9 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 
 public class HomeFragment extends Fragment {
 
@@ -50,7 +53,7 @@ public class HomeFragment extends Fragment {
         });
         RecyclerView postsRecyclerView = view.findViewById(R.id.postsRecyclerView);
 
-        Query query = FirebaseFirestore.getInstance().collection("posts").limit(50);
+        Query query = FirebaseFirestore.getInstance().collection("posts").limit(50).orderBy("time");
 
         FirestoreRecyclerOptions<Post> options = new FirestoreRecyclerOptions.Builder<Post>()
                 .setQuery(query, Post.class)
@@ -76,7 +79,10 @@ public class HomeFragment extends Fragment {
                 Glide.with(getContext()).load(post.authorPhotoUrl).circleCrop().into(holder.authorPhotoImageView);
             holder.authorTextView.setText(post.author);
             holder.contentTextView.setText(post.content);
-
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(post.time);
+            //holder.timeTextView.setText(format);
             final String postKey = getSnapshots().getSnapshot(position).getId();
             final String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
             if(post.likes.containsKey(uid))
