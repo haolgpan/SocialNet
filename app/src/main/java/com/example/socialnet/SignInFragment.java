@@ -116,7 +116,7 @@ public class SignInFragment extends Fragment {
     }
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         if(acct == null) return;
-        signInProgressBar.setVisibility(View.VISIBLE);
+        signInProgressBar.setVisibility(View.GONE);
         signInForm.setVisibility(View.GONE);
         mAuth.signInWithCredential(GoogleAuthProvider.getCredential(acct.getIdToken(
                 ), null))

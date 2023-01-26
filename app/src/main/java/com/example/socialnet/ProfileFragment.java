@@ -1,5 +1,6 @@
 package com.example.socialnet;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class ProfileFragment extends Fragment {
     ImageView photoImageView;
     TextView displayNameTextView, emailTextView;
+    NavController navController;
 
     public ProfileFragment() {}
 
@@ -37,6 +39,14 @@ public class ProfileFragment extends Fragment {
         photoImageView = view.findViewById(R.id.photoImageView);
         displayNameTextView = view.findViewById(R.id.displayNameTextView);
         emailTextView = view.findViewById(R.id.emailTextView);
+
+        navController = Navigation.findNavController(view);
+        view.findViewById(R.id.gotoEditProfileFragmentButton).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.EditProfilePage);
+            }
+        });
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
