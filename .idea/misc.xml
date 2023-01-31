@@ -10,7 +10,9 @@
         <entry key="..\:/Users/Gilver/AndroidStudioProjects/SocialNet/app/src/main/res/layout/fragment_register.xml" value="0.1" />
         <entry key="..\:/Users/Gilver/AndroidStudioProjects/SocialNet/app/src/main/res/layout/fragment_sign_in.xml" value="0.1" />
         <entry key="..\:/Users/Gilver/AndroidStudioProjects/SocialNet/app/src/main/res/menu/activity_main_drawer.xml" value="0.1" />
+        <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/drawable/delete.xml" value="0.1825" />
         <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/drawable/image.xml" value="0.169" />
+        <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/layout/app_bar_main.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/layout/content_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/layout/ctivity_edit_profile_page.xml" value="0.12310030395136778" />
@@ -19,9 +21,10 @@
         <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/layout/fragment_new_post.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/layout/fragment_profile.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/layout/fragment_register.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/layout/fragment_sign_in.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/layout/fragment_sign_out.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/layout/nav_header_main.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/layout/viewholder_post.xml" value="0.11197916666666667" />
+        <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/layout/viewholder_post.xml" value="0.6" />
         <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/menu/activity_main_drawer.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/Hao/AndroidStudioProjects/SocialNet/app/src/main/res/xml/paths.xml" value="0.22554347826086957" />
       </map>
