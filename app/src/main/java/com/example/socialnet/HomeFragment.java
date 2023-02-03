@@ -134,6 +134,7 @@ public class HomeFragment extends Fragment {
                     FirebaseFirestore.getInstance().collection("posts")
                             .document(postKey)
                             .delete();
+                    Toast.makeText(getContext(), "Post deleted", Toast.LENGTH_LONG).show();
                 }
                 else Toast.makeText(getContext(), "Can't delete this post", Toast.LENGTH_LONG).show();
             });
