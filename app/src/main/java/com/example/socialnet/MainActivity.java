@@ -78,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                     name.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
                     email.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                    //Se intenta actualizar a tiempo real
+                    Glide.with(MainActivity.this)
+                            .load(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString())
+                            .circleCrop()
+                            .into(photo);
                 }
             }
         });
