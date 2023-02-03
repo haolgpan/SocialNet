@@ -1,7 +1,9 @@
 package com.example.socialnet;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -32,6 +35,29 @@ public class HomeFragment extends Fragment {
 
     NavController navController;
     public AppViewModel appViewModel;
+    private MainActivity main;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        main = (MainActivity) activity;
+        main.unlockDrawer();
+   }
+
+   @Override
+   public void onCreate(Bundle saveInstanceState) {
+        super.onCreate(saveInstanceState);
+       OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+           @Override
+           public void handleOnBackPressed() {
+               // Handle the back button even
+               getActivity().finish();
+               System.exit(0);
+           }
+       };
+
+       requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+   }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -96,11 +122,20 @@ public class HomeFragment extends Fragment {
             else
                 holder.likeImageView.setImageResource(R.drawable.like_off);
             holder.numLikesTextView.setText(String.valueOf(post.likes.size()));
+            if(!uid.equals(post.uid)) holder.deletePost.setVisibility(View.GONE);
             holder.likeImageView.setOnClickListener(view -> {
                 FirebaseFirestore.getInstance().collection("posts")
                         .document(postKey)
                         .update("likes." + uid, post.likes.containsKey(uid) ?
                                 FieldValue.delete() : true);
+            });
+            holder.deletePost.setOnClickListener(view -> {
+                if(uid.equals(post.uid)) {
+                    FirebaseFirestore.getInstance().collection("posts")
+                            .document(postKey)
+                            .delete();
+                }
+                else Toast.makeText(getContext(), "Can't delete this post", Toast.LENGTH_LONG).show();
             });
             // Miniatura de media
             if (post.mediaUrl != null) {
@@ -120,11 +155,12 @@ public class HomeFragment extends Fragment {
         }
 
         class PostViewHolder extends RecyclerView.ViewHolder {
-            ImageView authorPhotoImageView, likeImageView, mediaImageView;
+            ImageView authorPhotoImageView, likeImageView, mediaImageView, deletePost;
             TextView authorTextView, contentTextView, numLikesTextView;
 
             PostViewHolder(@NonNull View itemView) {
                 super(itemView);
+                deletePost = itemView.findViewById(R.id.deletePost);
                 authorPhotoImageView = itemView.findViewById(R.id.photoImageView);
                 likeImageView = itemView.findViewById(R.id.likeImageView);
                 mediaImageView = itemView.findViewById(R.id.mediaImage);
@@ -135,3 +171,4 @@ public class HomeFragment extends Fragment {
         }
     }
 }
+//this is a test for branch

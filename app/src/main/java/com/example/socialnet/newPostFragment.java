@@ -108,7 +108,10 @@ public class newPostFragment extends Fragment {
 
     private void guardarEnFirestore(String postContent, String mediaUrl) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Post post = new Post(user.getUid(), user.getDisplayName(),
+        String userName;
+        if(user.getDisplayName() == null) userName = user.getEmail();
+        else userName = user.getDisplayName();
+        Post post = new Post(user.getUid(), userName,
                 (user.getPhotoUrl() != null ? user.getPhotoUrl().toString() ://null
                         "R.drawable.user"), postContent, Calendar.getInstance().getTimeInMillis(), mediaUrl, mediaTipo);
         FirebaseFirestore.getInstance().collection("posts")

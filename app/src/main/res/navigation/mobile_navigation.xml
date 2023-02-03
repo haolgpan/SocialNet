@@ -39,4 +39,9 @@
         android:name="com.example.socialnet.MediaFragment"
         android:label="fragment_media"
         tools:layout="@layout/fragment_media" />
+    <fragment
+        android:id="@+id/EditProfilePage"
+        android:name="com.example.socialnet.EditProfilePage"
+        android:label="edit_profile_page"
+        tools:layout="@layout/activity_edit_profile_page" />
 </navigation>

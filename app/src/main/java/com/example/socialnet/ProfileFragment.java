@@ -1,7 +1,9 @@
 package com.example.socialnet;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -22,8 +24,22 @@ import com.google.firebase.auth.FirebaseUser;
 public class ProfileFragment extends Fragment {
     ImageView photoImageView;
     TextView displayNameTextView, emailTextView;
+    NavController navController;
 
     public ProfileFragment() {}
+    @Override
+    public void onCreate(Bundle saveInstanceState) {
+        super.onCreate(saveInstanceState);
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button even
+                navController.navigate(R.id.homeFragment);
+            }
+        };
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +53,14 @@ public class ProfileFragment extends Fragment {
         photoImageView = view.findViewById(R.id.photoImageView);
         displayNameTextView = view.findViewById(R.id.displayNameTextView);
         emailTextView = view.findViewById(R.id.emailTextView);
+
+        navController = Navigation.findNavController(view);
+        view.findViewById(R.id.gotoEditProfileFragmentButton).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.EditProfilePage);
+            }
+        });
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
